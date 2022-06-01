@@ -47,6 +47,7 @@ namespace Idade
 
             if (dataNascimento.Month >= DataAtual.Month && dataNascimento.Day >= dataNascimento.Day)
                 Anos--;
+                String nomeTexto = textNome.Text;
 
 
             DateTime AnosTranscorridos = dataNascimento.AddYears(Anos);
@@ -57,7 +58,7 @@ namespace Idade
             else if (dtpNascimento.Value < DateTime.Now)
             {
                 int resultado = CalculaIdade(dtpNascimento.Value);
-                lblIdade.Text = $"{resultado} anos";
+                lblIdade.Text = $"{nomeTexto},{resultado} anos";
             }
             else
             {
@@ -109,16 +110,17 @@ namespace Idade
                 {
                     MessageBox.Show("Idade não permitida!");
                 }
-                int Dias = DataAtual.Subtract(AnosTranscorridos.AddMonths(Meses)).Days;
-                int Horas = DataAtual.Subtract(AnosTranscorridos).Hours;
-                int Minutos = DataAtual.Subtract(AnosTranscorridos).Minutes;
-                int Segundos = DataAtual.Subtract(AnosTranscorridos).Seconds;
-                String nomeTexto = textNome.Text;
-               
-
-                lblIdade.Text = $"{nomeTexto}, {Anos} anos {Meses} Meses {Dias} dias {Horas} horas" +
-                    $"{Minutos} minutos {Segundos} segundos";
+                  
             }
+            int Dias = DataAtual.Subtract(AnosTranscorridos.AddMonths(Meses)).Days;
+            int Horas = DataAtual.Subtract(AnosTranscorridos).Hours;
+            int Minutos = DataAtual.Subtract(AnosTranscorridos).Minutes;
+            int Segundos = DataAtual.Subtract(AnosTranscorridos).Seconds;
+            String nomeTexto = textNome.Text;
+
+
+            lblIdade.Text = $"{nomeTexto}, {Anos} anos {Meses} Meses {Dias} dias {Horas} horas" +
+                $"{Minutos} minutos {Segundos} segundos";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
